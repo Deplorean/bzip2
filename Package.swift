@@ -11,51 +11,58 @@ let package = Package(
         .iOS(.v15),
     ],
     products: [
-        .executable(name: "bzip",
-                    targets: [
-                        "bzip"
-                    ],
-                   ),
-        .library(name: "bzip2",
-                 type: .dynamic,
-                 targets: ["bzip2"]
-                ),
+        .executable(
+            name: "bzip2",
+            targets: ["bzip2"]
+        ),
+        .executable(
+            name: "bzip2recover",
+            targets: ["bzip2recover"]
+        ),
+        .library(
+            name: "bzlib",
+            type: .dynamic,
+            targets: ["bzlib"]
+        ),
     ],
     dependencies: [
-        .package(url: "git@github.com:Deplorean/z.git", from: "1.3.1"),
+        .package(url: "git@github.com:Deplorean/z.git", from: "1.3.1")
     ],
     targets: [
-        .executableTarget(name: "bzip",
-                          dependencies: [
-                            .byNameItem(name: "bzip2", condition: .none),
-                          ],
-                          sources: [
-                            //"bzlib.c",
-                            "bzip2.c",
-                          ],
-                         ),
-        .target(
+        .executableTarget(
             name: "bzip2",
             dependencies: [
-                .byNameItem(name: "z", condition: .none),
+                "bzlib"
+            ],
+            sources: ["bzip2.c"]
+        ),
+        .executableTarget(
+            name: "bzip2recover",
+            dependencies: [
+                "bzlib"
+            ],
+            path: "Sources/bzip2",
+            sources: ["bzip2recover.c"]
+        ),
+        .target(
+            name: "bzlib",
+            dependencies: [
+                .byNameItem(name: "z", condition: .none)
+            ],
+            path: "Sources/bzip2",
+            exclude: [
+                "bzip2.c"
             ],
             sources: [
                 "bzlib.c",
-                //"bzip2.c",
                 //"bzip2recover.c",
                 "decompress.c",
                 "compress.c",
                 "randtable.c",
                 "crctable.c",
                 "huffman.c",
-                "blocksort.c",
-            ],
-            publicHeadersPath: "include",
-            cSettings: [
-                .headerSearchPath("include"),
-            ],
-        ),
-    ],
-    //cLanguageStandard: .gnu11,
-    //cxxLanguageStandard: .gnucxx17
+                "blocksort.c"
+            ]
+        )
+    ]
 )
