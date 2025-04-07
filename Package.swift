@@ -26,7 +26,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "git@github.com:Deplorean/z.git", from: "1.3.1")
+        .package(url: "https://github.com/Deplorean/z.git", from: "1.3.1")
     ],
     targets: [
         .executableTarget(
