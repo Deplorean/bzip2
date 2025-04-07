@@ -20,9 +20,8 @@ let package = Package(
             targets: ["bzip2recover"]
         ),
         .library(
-            name: "bzlib",
-            type: .dynamic,
-            targets: ["bzlib"]
+            name: "bz2",
+            targets: ["bz2"]
         ),
     ],
     dependencies: [
@@ -32,20 +31,23 @@ let package = Package(
         .executableTarget(
             name: "bzip2",
             dependencies: [
-                "bzlib"
+                "bz2"
             ],
-            sources: ["bzip2.c"]
+            sources: ["bzip2.c"],
+            resources: [
+                .process("bzip2.1"),
+            ]
         ),
         .executableTarget(
             name: "bzip2recover",
             dependencies: [
-                "bzlib"
+                "bz2"
             ],
             path: "Sources/bzip2",
             sources: ["bzip2recover.c"]
         ),
         .target(
-            name: "bzlib",
+            name: "bz2",
             dependencies: [
                 .byNameItem(name: "z", condition: .none)
             ],
@@ -61,6 +63,10 @@ let package = Package(
                 "compress.c",
                 "decompress.c",
                 "bzlib.c"
+            ],
+            resources: [
+                .process("bzdiff"),
+                .process("bzlib.h")
             ],
             cSettings: [
                 .define("_LARGE_FILES"),
