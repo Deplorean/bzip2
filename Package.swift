@@ -26,7 +26,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/Deplorean/z.git", from: "1.3.1")
+        .package(url: "https://github.com/Deplorean/z.git", branch: "main")
     ],
     targets: [
         .executableTarget(
@@ -54,15 +54,25 @@ let package = Package(
                 "bzip2.c"
             ],
             sources: [
-                "bzlib.c",
-                //"bzip2recover.c",
-                "decompress.c",
-                "compress.c",
-                "randtable.c",
-                "crctable.c",
+                "blocksort.c",
                 "huffman.c",
-                "blocksort.c"
+                "crctable.c",
+                "randtable.c",
+                "compress.c",
+                "decompress.c",
+                "bzlib.c"
+            ],
+            cSettings: [
+                .define("_LARGE_FILES"),
+                .define("_FILE_OFFSET_BITS", to: "64"),
+                .unsafeFlags(
+                    [
+                        "-Wall",
+                        "-Winline"
+                    ]
+                )
             ]
         )
     ]
+    //cLanguageStandard: .
 )
