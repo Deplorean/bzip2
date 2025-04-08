@@ -22,7 +22,7 @@ let package = Package(
         .library(
             name: "bz2",
             targets: ["bz2"]
-        ),
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/Deplorean/z.git", branch: "main")
@@ -49,7 +49,7 @@ let package = Package(
         .target(
             name: "bz2",
             dependencies: [
-                .byNameItem(name: "z", condition: .none)
+                "z"
             ],
             path: "Sources/bzip2",
             exclude: [
@@ -78,7 +78,8 @@ let package = Package(
                     ]
                 )
             ]
-        )
+        ),
+        .testTarget(name: "bzip2_tests")
     ]
     //cLanguageStandard: .
 )

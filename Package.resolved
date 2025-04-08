@@ -1,5 +1,5 @@
 {
-  "originHash" : "fd02ad7a53cd04170e782f433dd0dfe3a349a106c252e5d7447d92d97525a838",
+  "originHash" : "b732c4c767d053e888db828b87022a3565b2a7c3ab73bbd2ae39ce9fb73454fb",
   "pins" : [
     {
       "identity" : "z",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/Deplorean/z.git",
       "state" : {
         "branch" : "main",
-        "revision" : "8c40415c62e77c4113e5d5dc53d81897ecd06ffc"
+        "revision" : "e79fd1154a97533bd77f5968758b13c94fd89a31"
       }
     }
   ],

@@ -1,0 +1,5 @@
+module bzip2 {
+    header "../bzlib.h"
+    
+    export *
+}
